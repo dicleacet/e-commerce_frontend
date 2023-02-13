@@ -53,13 +53,20 @@ export default {
     this.getLatestProducts()
   },
   methods: {
-    getLatestProducts() {
-      axios.get('api/v1/latest-products/')
+    async getLatestProducts() {
+      this.$store.commit('setIsLoading', true)
+
+      await axios.get('api/v1/latest-products/')
       .then(response => {
         this.latestProducts = response.data
+
+        document.title = 'Home | Django Ecommerce'
       })
       .catch(error => {
         console.log(error)
+      })
+      .finally(() => {
+            this.$store.commit('setIsLoading', false)
       })
     }
   }
