@@ -12,6 +12,8 @@
     </tr>
 </template>
 
+
+
 <script>
 export default {
     name: 'CartItem',
